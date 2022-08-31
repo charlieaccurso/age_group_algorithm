@@ -63,3 +63,12 @@ def filter_by_age_group(row, max_age=100, current_year=2022):
 
 census['age_group']= census.birth_year.apply(filter_by_age_group)
 # print(census.head())
+
+order= census.age_group.unique()
+census.age_group = pd.Categorical(
+  census.age_group,
+  order,
+  ordered=False
+)
+age_group_codes= census.age_group.cat.codes
+# print(age_group_codes.unique())
